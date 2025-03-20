@@ -7,26 +7,96 @@ _\ \ (__| | |  __/  __/ | | / ___/ (_| | (_| | | (_| | | | |
                                                             
 ```
 
-## About
+# About
 ScreenPadian is a Linux command-line tool for controlling brightness and power for the ASUS ScreenPad. It works similarly to the well-known [Monitorian](https://github.com/emoacht/Monitorian) application but is designed specifically for Linux and ASUS ScreenPad.
 
-## What is ScreenPad?
+# What is ScreenPad?
 ScreenPad is a secondary touchscreen built into ASUS dual-screen laptops. It functions as an additional display and a touchpad, but ASUS does not provide official brightness control tools for Linux.
 
 <p align="center">
   <img src="resources/images/ScreenPad.jpg" alt="ScreenPad" width="500">
 </p>
 
-## Motivation
+# Motivation
 I wanted to manage my ScreenPad’s brightness and power directly from Linux, but no existing software allowed it. I created ScreenPadian as a simple and efficient solution that works the way I need it.
 
-## Features
+# Features
 - Get current brightness
 - Set brightness 
 - Increase or decrease brightness 
 - Turn the ScreenPad on and off
 
-## Usage
+# Installation
+## Manual
+To manually compile and install `screenpadian`, follow these steps:
+
+### Install Dependencies
+Ensure you have CMake and a C++ compiler installed:
+
+```sh
+sudo apt update
+sudo apt install cmake g++ -y
+```
+
+### Clone the Repository
+
+```sh
+git clone https://github.com/admtrv/ScreenPadian.git
+cd screenpadian
+```
+
+### Compile the Program
+
+```sh
+mkdir cmake-build-debug
+cd cmake-build-debug
+cmake ..
+make
+```
+
+### Install for Global Use
+
+```sh
+sudo make install
+```
+
+
+## From `.tar.gz`
+
+To install `screenpadian` from archive, extract and move the binary to `/usr/local/bin`:
+
+```sh
+tar -xzvf screenpadian-1.0.0-linux.tar.gz
+cd screenpadian-1.0.0
+sudo mv screenpadian /usr/local/bin/
+sudo chmod +x /usr/local/bin/screenpadian
+```
+
+## From `.deb`
+
+For Debian-based distributions (Ubuntu, Mint, etc.), use:
+
+```sh
+sudo dpkg -i screenpadian-1.0.0-deb.deb
+```
+
+To uninstall:
+
+```sh
+sudo dpkg -r screenpadian
+```
+
+## Verify Installation
+
+```sh
+which screenpadian
+```
+
+Now `screenpadian` is installed and can be used from anywhere!
+
+
+
+# Usage
 To see available options, run `screenpadian --help`:
 ```
 ScreenPadian 1.0.0
@@ -44,16 +114,16 @@ Options:
   -v, --version     Show version
 ```
 
-### Usage Examples:
+## Usage Examples
 ```
 screenpadian --get        # get current brightness
 screenpadian --set 50     # set brightness to 50%
 screenpadian --toggle     # toggle ScreenPad on/off
 ```
 
-### Automatization Examples
+## Automation Examples
 
-#### Automatically Reduce Brightness at Night
+### Automatically Reduce Brightness at Night
 You can set up a cron job to lower brightness at 10 PM:
 ```sh
 crontab -e
@@ -64,7 +134,7 @@ Add this line:
 ```
 Now brightness will automatically reduce to 30% at 10 PM!
 
-#### Map Brightness Control to Keyboard Keys
+### Map Brightness Control to Keyboard Keys
 You can assign `screenpadian` commands to hotkeys using `xbindkeys`.
 
 1. Install `xbindkeys`:
@@ -91,5 +161,5 @@ You can assign `screenpadian` commands to hotkeys using `xbindkeys`.
 
 Now brightness keys will control the ScreenPad!
 
-## Contributing
+# Contributing
 If you have suggestions or improvements, feel free to open an issue or submit a pull request!
